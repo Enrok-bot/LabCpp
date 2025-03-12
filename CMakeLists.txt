@@ -5,4 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(LabCpp main.cpp
         zlab02.cpp
-        zlab02.h)
+        zlab02.h
+        zlab03.cpp
+        zlab03.h
+        organizm.cpp
+        organizm.h)
