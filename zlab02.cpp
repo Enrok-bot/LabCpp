@@ -159,15 +159,10 @@ void ZLab02::menu() {
     unsigned short wybor;
 
     do {
-        cout << "Które zadanie uruchomić?" << endl
-                << "3 -> zadanie 2.3" << endl
-                << "4 -> zadanie 2.4" << endl
-                << "5 -> zadanie 2.5" << endl
-                << "7 -> zadanie 2.7" << endl
-                << "8 -> zadanie 2.8" << endl
-                << "9 -> zadanie 2.9" << endl
-                << "10 -> zadanie 2.10" << endl
-                << sqrt(2) <<" -> zadanie 2.11" << endl;
+        cout << "Które zadanie uruchomić?" << endl;
+        for (int i = 3; i <= 11; i++) {
+            cout << i << " -> zadanie 2." << i << endl;
+        }
         cin >> wybor;
         cin.ignore(); //czyści bufor
     } while (wybor < 3 || wybor > 12 || wybor == 6);
@@ -175,9 +170,9 @@ void ZLab02::menu() {
     short min, max;
 
     if (wybor == 10) {
-        cout <<"Podaj dolny zakres: " <<endl;
+        cout << "Podaj dolny zakres: " << endl;
         cin >> min;
-        cout <<"Podaj górny zakres: " <<endl;
+        cout << "Podaj górny zakres: " << endl;
         cin >> max;
     }
 
@@ -197,7 +192,8 @@ void ZLab02::menu() {
             break;
         case 10: zadanie_2_10(min, max);
             break;
-        case 11: pobierzLiczbe(); break;
+        case 11: pobierzLiczbe();
+            break;
         default: cout << "Nie ma takiego zadania" << endl;
     }
 }

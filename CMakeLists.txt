@@ -9,4 +9,6 @@ add_executable(LabCpp main.cpp
         zlab03.cpp
         zlab03.h
         organizm.cpp
-        organizm.h)
+        organizm.h
+        samochod.cpp
+        samochod.h)
