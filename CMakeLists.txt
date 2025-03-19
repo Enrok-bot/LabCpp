@@ -11,4 +11,5 @@ add_executable(LabCpp main.cpp
         organizm.cpp
         organizm.h
         samochod.cpp
-        samochod.h)
+        samochod.h
+        ustawienia.h)
