@@ -134,7 +134,7 @@ for(int i=-1; i<5; i+=3) k—;
 // k=3
 ```
 ---
-Odpowiedzi na pytania:
+### Odpowiedzi na pytania:
 
 1. **Jakie rozszerzenie ma plik nagłówkowy i po co on jest?**
     - Plik nagłówkowy w C++ ma rozszerzenie **.h**. Służy do deklarowania klas, funkcji, zmiennych i stałych, które mogą być używane w innych plikach źródłowych. Dzięki temu kod jest bardziej modularny i łatwiejszy do zarządzania .
@@ -247,7 +247,7 @@ Odpowiedzi na pytania:
   ```  
 - Jest on wywoływany automatycznie przy końcu zasięgu obiektu lub przy użyciu `delete` dla obiektów dynamicznych.
 
-Znalazłem odpowiednie fragmenty kodu i teraz mogę odpowiedzieć na Twoje pytania.
+### Odpowiedzi na pytania:
 
 ### **Listing 3.2**
 1. **Wiersz 10 – Jakie wartości można podstawić pod zmienną `nazwa`?**
