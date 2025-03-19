@@ -1,24 +1,24 @@
 #include "samochod.h"
 
-float Samochod::obliczZasieg() {
+float Samochod::obliczZasieg() const{
     return ilosc_paliwa / zuzycie_paliwa * 100;
 }
 
 Samochod::Samochod(std::string model, float spalanie, float bak) : model(model), zuzycie_paliwa(spalanie), ilosc_paliwa(bak){}
 
-std::string Samochod::jakiModel() {
+std::string Samochod::jakiModel() const{
     return model;
 }
 
-float Samochod::jakieZuzycie() {
+float Samochod::jakieZuzycie() const{
     return zuzycie_paliwa;
 }
 
-float Samochod::ilePaliwa() {
+float Samochod::ilePaliwa() const{
     return ilosc_paliwa;
 }
 
-std::string Samochod::doTekstu() {
+std::string Samochod::doTekstu() const{
     std::string napis;
     napis = model;
     napis += " Paliwa starczy na ";

@@ -7,20 +7,20 @@ class Samochod {
 private:
     const std::string model;
     const float zuzycie_paliwa; // zużycie paliwa w litrach na 100 km
-    const float ilosc_paliwa;
+    float ilosc_paliwa;
 
-    float obliczZasieg();
+    float obliczZasieg() const;
 
 public:
     Samochod(std::string model, float spalanie, float bak);
 
-    std::string jakiModel();
+    std::string jakiModel() const;
 
-    float jakieZuzycie();
+    float jakieZuzycie() const;
 
-    float ilePaliwa();
+    float ilePaliwa() const;
 
-    std::string doTekstu();
+    std::string doTekstu() const;
 };
 
 
