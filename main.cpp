@@ -1,37 +1,19 @@
-#include "ustawienia.h"
-#include <iostream>
-
-using namespace std;
-
-void wyswietl(UstawieniaSymulacji &UST) {
-    cout << "Znak glon:" << UST.znakGlon
-            << " zycieMin=" << UST.glonZycieMin
-            << " zycieMax=" << UST.glonZycieMax << endl;
-}
+#include "zapaswody.h"
 
 int main() {
-    UstawieniaSymulacji &UST1
-            = UstawieniaSymulacji::pobierzUstawienia();
-    UstawieniaSymulacji &UST2
-            = UstawieniaSymulacji::pobierzUstawienia();
-    UstawieniaSymulacji &UST3
-            = UstawieniaSymulacji::pobierzUstawienia();
+    // Zmiana pojemności dużej butelki na 2.5l przed utworzeniem obiektu
+    ZapasWody::ustawPojemnoscDuzej(2);
 
-    cout << "Pobranie ustawien 3x" << endl;
-    cout << "UST1: ";
-    wyswietl(UST1);
-    cout << "UST2: ";
-    wyswietl(UST2);
-    cout << "UST3: ";
-    wyswietl(UST3);
+    // Tworzenie obiektu ZapasWody z domyślnymi wartościami
+    ZapasWody zw;
 
-    cout << endl << "Zmiana wartości tylko 1x" << endl;
-    UST2.glonZycieMax = 100;
-    cout << "UST1: ";
-    wyswietl(UST1);
-    cout << "UST2: ";
-    wyswietl(UST2);
-    cout << "UST3: ";
-    wyswietl(UST3);
+    // Dodawanie butelek
+    zw.dodajDuza(2);
+    zw.dodajSrednia(1);
+    zw.dodajMala(3);
+
+    // Wyświetlenie informacji o zapasie wody
+    zw.wyswietl();
+
     return 0;
 }
