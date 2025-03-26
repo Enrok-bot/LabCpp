@@ -381,3 +381,104 @@ for(int i=-1; i<5; i+=3) k—;
 
 36. **Na czym polega test symulacji?**
     - Sprawdza działanie organizmu w ekosystemie .
+# **26.02**
+Nie znalazłem bezpośrednio listingów 4.2–4.9, ale mogę odpowiedzieć na część pytań ogólnie.
+
+---
+
+### **Pytania kontrolne**
+1. **Czym jest typ wyliczeniowy (`enum`) w C++?**  
+   - To typ danych pozwalający na definiowanie **symbolicznych nazw dla stałych wartości liczbowych**.  
+   - **Przykład:**  
+     ```cpp
+     enum Kolor {CZERWONY, ZIELONY, NIEBIESKI};
+     Kolor mojKolor = ZIELONY;
+     ```
+
+2. **Czym są składniki statyczne klasy?**  
+   - To pola lub metody, które należą **do klasy, a nie do konkretnego obiektu**.  
+   - Można je wywołać bez tworzenia instancji klasy (`NazwaKlasy::nazwaStatyczna`).  
+   - **Przykład:**  
+     ```cpp
+     class Przykład {
+     public:
+         static int licznik;
+     };
+     int Przykład::licznik = 0;
+     ```
+
+3. **Czym jest wzorzec projektowy klasy?**  
+   - To **ustrukturyzowany sposób organizacji kodu**, który rozwiązuje typowe problemy projektowe.  
+   - **Przykład – Singleton:**  
+     ```cpp
+     class Singleton {
+     private:
+         static Singleton* instancja;
+         Singleton() {}  // Prywatny konstruktor
+     public:
+         static Singleton* pobierzInstancje() {
+             if (!instancja) instancja = new Singleton();
+             return instancja;
+         }
+     };
+     Singleton* Singleton::instancja = nullptr;
+     ```
+
+---
+
+### **Dyskusja**
+
+#### **Listing 4.2, wiersz 1 → Jakie wartości przyjmują nazwy typu wyliczeniowego?**  
+- Domyślnie wartości zaczynają się od `0` i są inkrementowane, ale można przypisać własne wartości.
+
+#### **Listing 4.3, wiersze od 5 do 12 → Ile instrukcji języka C++ jest zawartych?**  
+- **Potrzebuję listingu 4.3**, ale można to policzyć ręcznie po uzyskaniu kodu.
+
+#### **Listing 4.3, wiersze od 14 do 28 → Ile instrukcji języka C++ jest zawartych?**  
+- Podobnie, trzeba zobaczyć kod.
+
+#### **Listing 4.3, wiersze od 32 do 36 → Co oznacza `||`?**  
+- `||` to operator **logicznego OR** (lub).  
+  - Jeśli **którekolwiek z wyrażeń** zwraca `true`, całe wyrażenie zwraca `true`.
+
+#### **Listing 4.3, wiersz 30-37 → Jak działa metoda `poprawnyZnakNiszy`?**  
+- Prawdopodobnie sprawdza, czy dany znak należy do zbioru poprawnych znaków.
+
+#### **Listing 4.3, wiersze 38-41 → Jak pozyskiwana jest wartość zwracana przez metodę?**  
+- Metoda może zwracać zmienną, wartość obliczoną wewnętrznie lub stałą.
+
+#### **Listing 4.3, wiersze 44, 45 → Jak nazywają się konstruktory?**  
+- **Odpowiedź była wcześniej**:  
+  - Konstruktor domyślny `UstawieniaSymulacji() {}`.  
+  - Konstruktor kopiujący `UstawieniaSymulacji(UstawieniaSymulacji&);`  
+  - `{}` występuje tylko tam, gdzie jest definicja.
+
+#### **Listing 4.4, wiersze 1-5 → Czy funkcja `wyswietl` może trwale zmienić ustawienia?**  
+- **Nie**, jeśli tylko wyświetla wartości.  
+- **Tak**, jeśli zmienia pola `UST`.
+
+#### **Listing 4.4 → Jak sprawdzono, że istnieje tylko 1 obiekt `UstawieniaSymulacji`?**  
+- **Singleton** – prywatny konstruktor + statyczna metoda zwracająca jedyną instancję.
+
+#### **Listing 4.5 → Jak zagwarantowano, że `GeneratorLosowy` nie zostanie utworzony?**  
+- **Konstruktor prywatny** + brak metody do tworzenia obiektu.
+
+#### **Listing 4.5, wiersz 6 → Jak uniknąć `std::`?**  
+- Dodać `using namespace std;`.
+
+#### **Listing 4.5, wiersz 17 → Co daje zdefiniowanie synonimu nazwy?**  
+- Umożliwia wygodniejsze użycie długiej nazwy, np.  
+  ```cpp
+  using liczba = unsigned long;
+  ```
+
+#### **Listing 4.6 → Dlaczego taka definicja w pliku `.cpp` jest konieczna?**  
+- Zapobiega **wielokrotnej definicji** zmiennej globalnej/statycznej.
+
+#### **Listing 4.7, wiersze 4-8 → Po co jest ten fragment kodu?**  
+- Może inicjalizować wartości, obsługiwać błędy lub ustawiać zmienne.
+
+#### **Listing 4.9 → Dlaczego `losujOdZeraDo(int max)` nie może po prostu wywołać `losujPomiedzy(0,max)`?**  
+- Może być **konflikt rzutowania typów**, albo różne wymagania dotyczące zakresu losowanych liczb.
+
+---
