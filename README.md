@@ -381,6 +381,7 @@ for(int i=-1; i<5; i+=3) k—;
 
 36. **Na czym polega test symulacji?**
     - Sprawdza działanie organizmu w ekosystemie .
+---
 # **19.03**
 ### Odpowiedzi na pytania kontrolne:
 
@@ -446,6 +447,7 @@ for(int i=-1; i<5; i+=3) k—;
 - **Listing 4.7, wiersze 4-8** → Fragment kodu zamienia wartości, jeśli `min > max`, zapewniając poprawne działanie funkcji losującej.
 
 - **Listing 4.9** → Metoda `losujOdZeraDo(int max)` nie może wywołać `losujPomiedzy(0, max)`, ponieważ `losujPomiedzy` wymaga dwóch argumentów o określonych typach.
+---
 # **26.03**
 ### **Pytania kontrolne**  
 
