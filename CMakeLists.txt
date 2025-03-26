@@ -14,4 +14,8 @@ add_executable(LabCpp main.cpp
         samochod.h
         ustawienia.h
         zapaswody.cpp
-        zapaswody.h)
+        zapaswody.h
+        sasiedztwo.cpp
+        sasiedztwo.h
+        GeneratorLosowy.cpp
+        GeneratorLosowy.h)

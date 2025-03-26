@@ -1,19 +1,75 @@
-#include "zapaswody.h"
+#include "sasiedztwo.h"
+#include <iostream>
+
+std::string nazwaRodzaju(RodzajMieszkanca rodzaj);
 
 int main() {
-    // Zmiana pojemności dużej butelki na 2.5l przed utworzeniem obiektu
-    ZapasWody::ustawPojemnoscDuzej(2);
+    Sasiedztwo sasiedztwo;
 
-    // Tworzenie obiektu ZapasWody z domyślnymi wartościami
-    ZapasWody zw;
+    sasiedztwo.okreslSasiada(P, GLON);
+    sasiedztwo.okreslSasiada(PG, GRZYB);
+    sasiedztwo.okreslSasiada(G, GRZYB);
+    sasiedztwo.okreslSasiada(LG, GLON);
+    sasiedztwo.okreslSasiada(L, BAKTERIA);
+    sasiedztwo.okreslSasiada(LD, BAKTERIA);
+    sasiedztwo.okreslSasiada(D, GLON);
+    sasiedztwo.okreslSasiada(PD, PUSTKA);
 
-    // Dodawanie butelek
-    zw.dodajDuza(2);
-    zw.dodajSrednia(1);
-    zw.dodajMala(3);
+    std::cout << "Przegląd sąsiedztwa:" << std::endl;
 
-    // Wyświetlenie informacji o zapasie wody
-    zw.wyswietl();
+    for (int i = 0; i < 8; i++) {
+        Polozenie p = static_cast<Polozenie>(i);
+        RodzajMieszkanca
+                r = sasiedztwo.ktoJestSasiadem(p);
 
+        std::cout << "polozenie=" << p << " rodzaj="
+                << nazwaRodzaju(r) << std::endl;
+    }
+
+    std::cout << std::endl << "Policzenie sasiadów"
+            << "określonego rodzaju:" << std::endl
+            << " glony=" << sasiedztwo.ile(GLON) << std::endl
+            << " grzyby=" << sasiedztwo.ile(GRZYB) << std::endl
+            << " trupy=" << sasiedztwo.ile(TRUP) << std::endl;
+
+    std::cout << std::endl << "Wylosowanie sasiada:" << std::endl
+            << " glon -> "
+            << sasiedztwo.losujSasiada(GLON) << std::endl
+            << " pustka -> "
+            << sasiedztwo.losujSasiada(PUSTKA) << std::endl
+            << " trup -> "
+            << sasiedztwo.losujSasiada(TRUP) << std::endl;
+
+
+    long wiersz, kolumna;
+    std::cout << std::endl
+            << "Zmiana indeksów [5][7] "
+            << "wg polozenia:" << std::endl;
+
+    for (int i = 0; i < 8; i++) {
+        Polozenie p = static_cast<Polozenie>(i);
+        wiersz = 5;
+        kolumna = 7;
+
+        Sasiedztwo::
+                zmienIndeksyWgPolozenia(p, wiersz, kolumna);
+
+        std::cout << " położenie: " << p << " ->[" << wiersz
+                << "][" << kolumna << "]" << std::endl;
+    }
+
+    std::cout << std::endl;
     return 0;
+}
+
+std::string nazwaRodzaju(RodzajMieszkanca rodzaj) {
+        switch (rodzaj) {
+                case GLON: return "GLON";
+                case GRZYB: return "GRZYB";
+                case BAKTERIA: return "BAKTERIA";
+                case PUSTKA: return "PUSTKA";
+                case SCIANA: return "ŚCIANA";
+                case TRUP: return "TRUP";
+                case NIEZNANE: return "NIEZNANE";
+        }
 }
