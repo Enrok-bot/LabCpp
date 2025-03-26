@@ -61,6 +61,42 @@ build CMakeFiles/LabCpp.dir/zlab02.cpp.obj: CXX_COMPILER__LabCpp_unscanned_Debug
   OBJECT_DIR = CMakeFiles\LabCpp.dir
   OBJECT_FILE_DIR = CMakeFiles\LabCpp.dir
 
+build CMakeFiles/LabCpp.dir/zlab03.cpp.obj: CXX_COMPILER__LabCpp_unscanned_Debug C$:/Users/eryk-/CLionProjects/LabCpp/zlab03.cpp || cmake_object_order_depends_target_LabCpp
+  DEP_FILE = CMakeFiles\LabCpp.dir\zlab03.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LabCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\LabCpp.dir
+
+build CMakeFiles/LabCpp.dir/organizm.cpp.obj: CXX_COMPILER__LabCpp_unscanned_Debug C$:/Users/eryk-/CLionProjects/LabCpp/organizm.cpp || cmake_object_order_depends_target_LabCpp
+  DEP_FILE = CMakeFiles\LabCpp.dir\organizm.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LabCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\LabCpp.dir
+
+build CMakeFiles/LabCpp.dir/samochod.cpp.obj: CXX_COMPILER__LabCpp_unscanned_Debug C$:/Users/eryk-/CLionProjects/LabCpp/samochod.cpp || cmake_object_order_depends_target_LabCpp
+  DEP_FILE = CMakeFiles\LabCpp.dir\samochod.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LabCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\LabCpp.dir
+
+build CMakeFiles/LabCpp.dir/zapaswody.cpp.obj: CXX_COMPILER__LabCpp_unscanned_Debug C$:/Users/eryk-/CLionProjects/LabCpp/zapaswody.cpp || cmake_object_order_depends_target_LabCpp
+  DEP_FILE = CMakeFiles\LabCpp.dir\zapaswody.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LabCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\LabCpp.dir
+
+build CMakeFiles/LabCpp.dir/sasiedztwo.cpp.obj: CXX_COMPILER__LabCpp_unscanned_Debug C$:/Users/eryk-/CLionProjects/LabCpp/sasiedztwo.cpp || cmake_object_order_depends_target_LabCpp
+  DEP_FILE = CMakeFiles\LabCpp.dir\sasiedztwo.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LabCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\LabCpp.dir
+
+build CMakeFiles/LabCpp.dir/GeneratorLosowy.cpp.obj: CXX_COMPILER__LabCpp_unscanned_Debug C$:/Users/eryk-/CLionProjects/LabCpp/GeneratorLosowy.cpp || cmake_object_order_depends_target_LabCpp
+  DEP_FILE = CMakeFiles\LabCpp.dir\GeneratorLosowy.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LabCpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\LabCpp.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target LabCpp
@@ -69,7 +105,7 @@ build CMakeFiles/LabCpp.dir/zlab02.cpp.obj: CXX_COMPILER__LabCpp_unscanned_Debug
 #############################################
 # Link the executable LabCpp.exe
 
-build LabCpp.exe: CXX_EXECUTABLE_LINKER__LabCpp_Debug CMakeFiles/LabCpp.dir/main.cpp.obj CMakeFiles/LabCpp.dir/zlab02.cpp.obj
+build LabCpp.exe: CXX_EXECUTABLE_LINKER__LabCpp_Debug CMakeFiles/LabCpp.dir/main.cpp.obj CMakeFiles/LabCpp.dir/zlab02.cpp.obj CMakeFiles/LabCpp.dir/zlab03.cpp.obj CMakeFiles/LabCpp.dir/organizm.cpp.obj CMakeFiles/LabCpp.dir/samochod.cpp.obj CMakeFiles/LabCpp.dir/zapaswody.cpp.obj CMakeFiles/LabCpp.dir/sasiedztwo.cpp.obj CMakeFiles/LabCpp.dir/GeneratorLosowy.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\LabCpp.dir
