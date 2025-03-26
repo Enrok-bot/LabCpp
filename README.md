@@ -446,3 +446,64 @@ for(int i=-1; i<5; i+=3) k—;
 - **Listing 4.7, wiersze 4-8** → Fragment kodu zamienia wartości, jeśli `min > max`, zapewniając poprawne działanie funkcji losującej.
 
 - **Listing 4.9** → Metoda `losujOdZeraDo(int max)` nie może wywołać `losujPomiedzy(0, max)`, ponieważ `losujPomiedzy` wymaga dwóch argumentów o określonych typach.
+# **26.03**
+### **Pytania kontrolne**  
+
+1. **Różnica między wskaźnikiem do stałej a stałym wskaźnikiem:**  
+   - **Wskaźnik do stałej:** `const int* ptr` – można zmieniać wskaźnik, ale nie wartość, na którą wskazuje.  
+   - **Stały wskaźnik:** `int* const ptr` – nie można zmieniać wskaźnika, ale można zmieniać wartość.  
+   - **Stały wskaźnik do stałej:** `const int* const ptr` – nie można zmieniać ani wskaźnika, ani wartości.  
+
+2. **Po co przekazujemy wskaźnik/referencję do stałego obiektu?**  
+   - Zmniejsza to **koszt kopiowania** dużych obiektów, jednocześnie zapobiegając modyfikacji danych.  
+   - **Przykład:**  
+     ```cpp
+     void pokaz(const std::string& tekst) { 
+         std::cout << tekst << std::endl; 
+     }
+     ```
+
+3. **Polimorfizm statyczny:**  
+   - Występuje, gdy **kompilator określa, którą metodę wywołać** na podstawie sygnatury.  
+   - **Przykład przeciążania metod (`GeneratorLosowy`)**:  
+     ```cpp
+     class GeneratorLosowy {
+     public:
+         static int losuj(int min, int max);
+         static double losuj(double min, double max);
+     };
+     ```
+
+---
+
+### **Dyskusja**  
+
+- **Listing 5.1** → Typy `RodzajMieszkanca` i `Polozenie` są prawdopodobnie zdefiniowane w osobnych plikach nagłówkowych.  
+
+- **Listing 5.1, wiersze 28-33** → Argumenty metody są przekazywane **przez referencję** (`long & wiersz, long & kolumna`), co umożliwia ich modyfikację w funkcji.  
+
+- **Listing 5.2, wiersz 15** → `nullptr` oznacza **wskaźnik nie wskazujący na żadną pamięć** i zastępuje `NULL` w C++11.  
+
+- **Listing 5.3, wiersze 4-5** → `static_cast<Polozenie>(GeneratorLosowy::losujPomiedzy(min, max))` konwertuje losową liczbę na wartość `Polozenie`.  
+
+- **Listing 5.4** → `auto` automatycznie określa typ zmiennej na podstawie przypisanej wartości.  
+
+- **Listing 5.5, linia 5** → `*elementWewnetrzny(polozenie) = rodzaj;` oznacza przypisanie wartości do wskaźnika.  
+
+- **Listing 5.6** → Metoda `ktoJestSasiadem()` zwraca `RodzajMieszkanca` przez dereferencję wskaźnika.  
+
+- **Listing 5.7** → Dwie pętle `for` iterują po tablicy `3x3`, omijając środek.  
+
+- **Listing 5.8, wiersze 8-9** → Jeśli nie istnieje `RodzajMieszkanca` w sąsiedztwie, pętla `while` może się nie zakończyć.  
+
+- **Listing 5.9** → Metoda zmienia indeksy macierzy `3x3` zgodnie z `Polozenie`, przesuwając `wiersz` i `kolumna`.  
+
+- **Listing 5.10** → `static_cast<long>` rzutuje `unsigned int` na `long`, aby umożliwić operacje arytmetyczne.  
+
+- **Listing 5.9 i 5.10 – polimorfizm?**  
+  - Tak, ponieważ metody `zmienIdeksyWgPolozenia()` są przeciążone (polimorfizm statyczny).  
+
+- **Listing 5.12, wiersz 49 – rzutowanie?**  
+  - `static_cast<Polozenie>(i);` konwertuje `int` na `Polozenie`, aby uniknąć niejawnych konwersji.  
+
+- **Listing 5.12, wiersze 52-53** → Wywołano `zmienIdeksyWgPolozenia(Polozenie, long&, long&)`, ponieważ argumenty to `long`.  
