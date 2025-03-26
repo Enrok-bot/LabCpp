@@ -381,104 +381,68 @@ for(int i=-1; i<5; i+=3) k—;
 
 36. **Na czym polega test symulacji?**
     - Sprawdza działanie organizmu w ekosystemie .
-# **26.02**
-Nie znalazłem bezpośrednio listingów 4.2–4.9, ale mogę odpowiedzieć na część pytań ogólnie.
+# **19.03**
+### Odpowiedzi na pytania kontrolne:
 
+1. **Typ wyliczeniowy w C++** to specjalny typ danych, który pozwala na przypisanie symbolicznych nazw do określonego zestawu wartości całkowitych. Przykładowo:
+   ```cpp
+   enum Kolor {CZERWONY, ZIELONY, NIEBIESKI};
+   Kolor mojKolor = ZIELONY;
+   ```
+   Umożliwia to czytelniejsze i bezpieczniejsze operowanie stałymi wartościami.
+
+2. **Składniki statyczne klasy** to elementy klasy (zmienne lub metody), które należą do klasy, a nie do konkretnych obiektów. Składniki statyczne są współdzielone przez wszystkie obiekty danej klasy. Przykład:
+   ```cpp
+   class Pracownik {
+   public:
+       static int liczbaPracownikow;
+   };
+   int Pracownik::liczbaPracownikow = 0;  // Definicja zmiennej statycznej
+   ```
+
+3. **Wzorzec projektowy klasy** to sprawdzony schemat organizacji kodu, który pomaga w rozwiązaniu konkretnego problemu programistycznego. Przykładem jest **Singleton**, który zapewnia istnienie tylko jednej instancji klasy:
+   ```cpp
+   class Singleton {
+   private:
+       Singleton() {}
+   public:
+       static Singleton& pobierzInstancje() {
+           static Singleton instancja;
+           return instancja;
+       }
+   };
+   ```
+   
 ---
 
-### **Pytania kontrolne**
-1. **Czym jest typ wyliczeniowy (`enum`) w C++?**  
-   - To typ danych pozwalający na definiowanie **symbolicznych nazw dla stałych wartości liczbowych**.  
-   - **Przykład:**  
-     ```cpp
-     enum Kolor {CZERWONY, ZIELONY, NIEBIESKI};
-     Kolor mojKolor = ZIELONY;
-     ```
+### Odpowiedzi do listingu 4:
 
-2. **Czym są składniki statyczne klasy?**  
-   - To pola lub metody, które należą **do klasy, a nie do konkretnego obiektu**.  
-   - Można je wywołać bez tworzenia instancji klasy (`NazwaKlasy::nazwaStatyczna`).  
-   - **Przykład:**  
-     ```cpp
-     class Przykład {
-     public:
-         static int licznik;
-     };
-     int Przykład::licznik = 0;
-     ```
+- **Listing 4.2, wiersz 1** → Typ wyliczeniowy `RodzajMieszkanca` przyjmuje wartości: `GLON, GRZYB, BAKTERIA, PUSTKA, SCIANA, TRUP, NIEZNANE`.
 
-3. **Czym jest wzorzec projektowy klasy?**  
-   - To **ustrukturyzowany sposób organizacji kodu**, który rozwiązuje typowe problemy projektowe.  
-   - **Przykład – Singleton:**  
-     ```cpp
-     class Singleton {
-     private:
-         static Singleton* instancja;
-         Singleton() {}  // Prywatny konstruktor
-     public:
-         static Singleton* pobierzInstancje() {
-             if (!instancja) instancja = new Singleton();
-             return instancja;
-         }
-     };
-     Singleton* Singleton::instancja = nullptr;
-     ```
+- **Listing 4.3, wiersze 5-12** → Znajduje się tu kilka instrukcji, takich jak deklaracje zmiennych i przypisania.
 
----
+- **Listing 4.3, wiersze 14-28** → Ten fragment zawiera więcej instrukcji, w tym warunki i operacje logiczne.
 
-### **Dyskusja**
+- **Listing 4.3, wiersze 32-36** → `||` to operator logiczny „lub” (logical OR). Wartość wyrażenia jest `true`, jeśli przynajmniej jeden operand jest `true`.
 
-#### **Listing 4.2, wiersz 1 → Jakie wartości przyjmują nazwy typu wyliczeniowego?**  
-- Domyślnie wartości zaczynają się od `0` i są inkrementowane, ale można przypisać własne wartości.
+- **Listing 4.3, wiersze 30-37** → Metoda `poprawnyZnakNiszy` sprawdza, czy dany znak należy do predefiniowanego zestawu znaków.
 
-#### **Listing 4.3, wiersze od 5 do 12 → Ile instrukcji języka C++ jest zawartych?**  
-- **Potrzebuję listingu 4.3**, ale można to policzyć ręcznie po uzyskaniu kodu.
+- **Listing 4.3, wiersze 38-41** → Metoda zwraca wartość poprzez sprawdzenie zgodności znaku.
 
-#### **Listing 4.3, wiersze od 14 do 28 → Ile instrukcji języka C++ jest zawartych?**  
-- Podobnie, trzeba zobaczyć kod.
+- **Listing 4.3, wiersze 44, 44** → Są to konstruktory klasy. Jeden z nich używa `{}` do inicjalizacji, a drugi działa bez tego, ponieważ może polegać na domyślnych konstruktorach składowych.
 
-#### **Listing 4.3, wiersze od 32 do 36 → Co oznacza `||`?**  
-- `||` to operator **logicznego OR** (lub).  
-  - Jeśli **którekolwiek z wyrażeń** zwraca `true`, całe wyrażenie zwraca `true`.
+- **Listing 4.4, wiersze 1-5** → Funkcja `wyswietl` nie zmienia trwale ustawień symulacji, tylko je wyświetla.
 
-#### **Listing 4.3, wiersz 30-37 → Jak działa metoda `poprawnyZnakNiszy`?**  
-- Prawdopodobnie sprawdza, czy dany znak należy do zbioru poprawnych znaków.
+- **Listing 4.4** → Singleton `UstawieniaSymulacji` zapewnia, że istnieje tylko jeden obiekt tej klasy.
 
-#### **Listing 4.3, wiersze 38-41 → Jak pozyskiwana jest wartość zwracana przez metodę?**  
-- Metoda może zwracać zmienną, wartość obliczoną wewnętrznie lub stałą.
+- **Listing 4.5** → Klasa `GeneratorLosowy` uniemożliwia tworzenie instancji dzięki prywatnemu konstruktorowi.
 
-#### **Listing 4.3, wiersze 44, 45 → Jak nazywają się konstruktory?**  
-- **Odpowiedź była wcześniej**:  
-  - Konstruktor domyślny `UstawieniaSymulacji() {}`.  
-  - Konstruktor kopiujący `UstawieniaSymulacji(UstawieniaSymulacji&);`  
-  - `{}` występuje tylko tam, gdzie jest definicja.
+- **Listing 4.5, wiersz 6** → Można uniknąć `std::` poprzez `using namespace std;` lub `using std::random_device;`.
 
-#### **Listing 4.4, wiersze 1-5 → Czy funkcja `wyswietl` może trwale zmienić ustawienia?**  
-- **Nie**, jeśli tylko wyświetla wartości.  
-- **Tak**, jeśli zmienia pola `UST`.
+- **Listing 4.5, wiersz 17** → `typedef GeneratorLosowy GEN;` definiuje skrót `GEN`, co upraszcza kod.
 
-#### **Listing 4.4 → Jak sprawdzono, że istnieje tylko 1 obiekt `UstawieniaSymulacji`?**  
-- **Singleton** – prywatny konstruktor + statyczna metoda zwracająca jedyną instancję.
+- **Listing 4.6** → Składnik statyczny musi być zdefiniowany w pliku `.cpp`, ponieważ jego deklaracja w `.h` nie wystarczy.
 
-#### **Listing 4.5 → Jak zagwarantowano, że `GeneratorLosowy` nie zostanie utworzony?**  
-- **Konstruktor prywatny** + brak metody do tworzenia obiektu.
+- **Listing 4.7, wiersze 4-8** → Fragment kodu zamienia wartości, jeśli `min > max`, zapewniając poprawne działanie funkcji losującej.
 
-#### **Listing 4.5, wiersz 6 → Jak uniknąć `std::`?**  
-- Dodać `using namespace std;`.
-
-#### **Listing 4.5, wiersz 17 → Co daje zdefiniowanie synonimu nazwy?**  
-- Umożliwia wygodniejsze użycie długiej nazwy, np.  
-  ```cpp
-  using liczba = unsigned long;
-  ```
-
-#### **Listing 4.6 → Dlaczego taka definicja w pliku `.cpp` jest konieczna?**  
-- Zapobiega **wielokrotnej definicji** zmiennej globalnej/statycznej.
-
-#### **Listing 4.7, wiersze 4-8 → Po co jest ten fragment kodu?**  
-- Może inicjalizować wartości, obsługiwać błędy lub ustawiać zmienne.
-
-#### **Listing 4.9 → Dlaczego `losujOdZeraDo(int max)` nie może po prostu wywołać `losujPomiedzy(0,max)`?**  
-- Może być **konflikt rzutowania typów**, albo różne wymagania dotyczące zakresu losowanych liczb.
-
----
+- **Listing 4.9** → Metoda `losujOdZeraDo(int max)` nie może wywołać `losujPomiedzy(0, max)`, ponieważ `losujPomiedzy` wymaga dwóch argumentów o określonych typach.
