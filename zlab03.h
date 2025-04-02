@@ -5,7 +5,7 @@
 using namespace std;
 
 class Prostokat {
-private:
+protected:
     string nazwa;
     double bok1, bok2;
     bool poprawny;
@@ -32,7 +32,7 @@ public:
 
     bool zmienBoki(double a, double b);
 
-    string doTekstu();
+    virtual string doTekstu();
 };
 
 #endif

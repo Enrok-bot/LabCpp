@@ -18,4 +18,10 @@ add_executable(LabCpp main.cpp
         sasiedztwo.cpp
         sasiedztwo.h
         GeneratorLosowy.cpp
-        GeneratorLosowy.h)
+        GeneratorLosowy.h
+        UrzadzenieElektryczne.cpp
+        UrzadzenieElektryczne.h
+        ZLab06.cpp
+        ZLab06.h
+        Mieszkaniec.cpp
+        Mieszkaniec.h)

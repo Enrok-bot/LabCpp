@@ -63,7 +63,7 @@ string Prostokat::doTekstu() {
     string napis = "";
 
     napis = "Prostokat o nazwie: " + nazwa + " bok1=" + to_string(bok1) + " bok2=" + to_string(bok2);
-    if (poprawny) napis += " obwód=" + to_string(obwod) + " pole=" + to_string(pole);
+    if (poprawny) napis += " obwod=" + to_string(obwod) + " pole=" + to_string(pole);
     else napis += " !Figura niepoprawna.";
     return napis;
 }
