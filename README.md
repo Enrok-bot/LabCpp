@@ -381,3 +381,131 @@ for(int i=-1; i<5; i+=3) k—;
 
 36. **Na czym polega test symulacji?**
     - Sprawdza działanie organizmu w ekosystemie .
+---
+# **19.03**
+### Odpowiedzi na pytania kontrolne:
+
+1. **Typ wyliczeniowy w C++** to specjalny typ danych, który pozwala na przypisanie symbolicznych nazw do określonego zestawu wartości całkowitych. Przykładowo:
+   ```cpp
+   enum Kolor {CZERWONY, ZIELONY, NIEBIESKI};
+   Kolor mojKolor = ZIELONY;
+   ```
+   Umożliwia to czytelniejsze i bezpieczniejsze operowanie stałymi wartościami.
+
+2. **Składniki statyczne klasy** to elementy klasy (zmienne lub metody), które należą do klasy, a nie do konkretnych obiektów. Składniki statyczne są współdzielone przez wszystkie obiekty danej klasy. Przykład:
+   ```cpp
+   class Pracownik {
+   public:
+       static int liczbaPracownikow;
+   };
+   int Pracownik::liczbaPracownikow = 0;  // Definicja zmiennej statycznej
+   ```
+
+3. **Wzorzec projektowy klasy** to sprawdzony schemat organizacji kodu, który pomaga w rozwiązaniu konkretnego problemu programistycznego. Przykładem jest **Singleton**, który zapewnia istnienie tylko jednej instancji klasy:
+   ```cpp
+   class Singleton {
+   private:
+       Singleton() {}
+   public:
+       static Singleton& pobierzInstancje() {
+           static Singleton instancja;
+           return instancja;
+       }
+   };
+   ```
+   
+---
+
+### Odpowiedzi do listingu 4:
+
+- **Listing 4.2, wiersz 1** → Typ wyliczeniowy `RodzajMieszkanca` przyjmuje wartości: `GLON, GRZYB, BAKTERIA, PUSTKA, SCIANA, TRUP, NIEZNANE`.
+
+- **Listing 4.3, wiersze 5-12** → Znajduje się tu kilka instrukcji, takich jak deklaracje zmiennych i przypisania.
+
+- **Listing 4.3, wiersze 14-28** → Ten fragment zawiera więcej instrukcji, w tym warunki i operacje logiczne.
+
+- **Listing 4.3, wiersze 32-36** → `||` to operator logiczny „lub” (logical OR). Wartość wyrażenia jest `true`, jeśli przynajmniej jeden operand jest `true`.
+
+- **Listing 4.3, wiersze 30-37** → Metoda `poprawnyZnakNiszy` sprawdza, czy dany znak należy do predefiniowanego zestawu znaków.
+
+- **Listing 4.3, wiersze 38-41** → Metoda zwraca wartość poprzez sprawdzenie zgodności znaku.
+
+- **Listing 4.3, wiersze 44, 44** → Są to konstruktory klasy. Jeden z nich używa `{}` do inicjalizacji, a drugi działa bez tego, ponieważ może polegać na domyślnych konstruktorach składowych.
+
+- **Listing 4.4, wiersze 1-5** → Funkcja `wyswietl` nie zmienia trwale ustawień symulacji, tylko je wyświetla.
+
+- **Listing 4.4** → Singleton `UstawieniaSymulacji` zapewnia, że istnieje tylko jeden obiekt tej klasy.
+
+- **Listing 4.5** → Klasa `GeneratorLosowy` uniemożliwia tworzenie instancji dzięki prywatnemu konstruktorowi.
+
+- **Listing 4.5, wiersz 6** → Można uniknąć `std::` poprzez `using namespace std;` lub `using std::random_device;`.
+
+- **Listing 4.5, wiersz 17** → `typedef GeneratorLosowy GEN;` definiuje skrót `GEN`, co upraszcza kod.
+
+- **Listing 4.6** → Składnik statyczny musi być zdefiniowany w pliku `.cpp`, ponieważ jego deklaracja w `.h` nie wystarczy.
+
+- **Listing 4.7, wiersze 4-8** → Fragment kodu zamienia wartości, jeśli `min > max`, zapewniając poprawne działanie funkcji losującej.
+
+- **Listing 4.9** → Metoda `losujOdZeraDo(int max)` nie może wywołać `losujPomiedzy(0, max)`, ponieważ `losujPomiedzy` wymaga dwóch argumentów o określonych typach.
+---
+# **26.03**
+### **Pytania kontrolne**  
+
+1. **Różnica między wskaźnikiem do stałej a stałym wskaźnikiem:**  
+   - **Wskaźnik do stałej:** `const int* ptr` – można zmieniać wskaźnik, ale nie wartość, na którą wskazuje.  
+   - **Stały wskaźnik:** `int* const ptr` – nie można zmieniać wskaźnika, ale można zmieniać wartość.  
+   - **Stały wskaźnik do stałej:** `const int* const ptr` – nie można zmieniać ani wskaźnika, ani wartości.  
+
+2. **Po co przekazujemy wskaźnik/referencję do stałego obiektu?**  
+   - Zmniejsza to **koszt kopiowania** dużych obiektów, jednocześnie zapobiegając modyfikacji danych.  
+   - **Przykład:**  
+     ```cpp
+     void pokaz(const std::string& tekst) { 
+         std::cout << tekst << std::endl; 
+     }
+     ```
+
+3. **Polimorfizm statyczny:**  
+   - Występuje, gdy **kompilator określa, którą metodę wywołać** na podstawie sygnatury.  
+   - **Przykład przeciążania metod (`GeneratorLosowy`)**:  
+     ```cpp
+     class GeneratorLosowy {
+     public:
+         static int losuj(int min, int max);
+         static double losuj(double min, double max);
+     };
+     ```
+
+---
+
+### **Dyskusja**  
+
+- **Listing 5.1** → Typy `RodzajMieszkanca` i `Polozenie` są prawdopodobnie zdefiniowane w osobnych plikach nagłówkowych.  
+
+- **Listing 5.1, wiersze 28-33** → Argumenty metody są przekazywane **przez referencję** (`long & wiersz, long & kolumna`), co umożliwia ich modyfikację w funkcji.  
+
+- **Listing 5.2, wiersz 15** → `nullptr` oznacza **wskaźnik nie wskazujący na żadną pamięć** i zastępuje `NULL` w C++11.  
+
+- **Listing 5.3, wiersze 4-5** → `static_cast<Polozenie>(GeneratorLosowy::losujPomiedzy(min, max))` konwertuje losową liczbę na wartość `Polozenie`.  
+
+- **Listing 5.4** → `auto` automatycznie określa typ zmiennej na podstawie przypisanej wartości.  
+
+- **Listing 5.5, linia 5** → `*elementWewnetrzny(polozenie) = rodzaj;` oznacza przypisanie wartości do wskaźnika.  
+
+- **Listing 5.6** → Metoda `ktoJestSasiadem()` zwraca `RodzajMieszkanca` przez dereferencję wskaźnika.  
+
+- **Listing 5.7** → Dwie pętle `for` iterują po tablicy `3x3`, omijając środek.  
+
+- **Listing 5.8, wiersze 8-9** → Jeśli nie istnieje `RodzajMieszkanca` w sąsiedztwie, pętla `while` może się nie zakończyć.  
+
+- **Listing 5.9** → Metoda zmienia indeksy macierzy `3x3` zgodnie z `Polozenie`, przesuwając `wiersz` i `kolumna`.  
+
+- **Listing 5.10** → `static_cast<long>` rzutuje `unsigned int` na `long`, aby umożliwić operacje arytmetyczne.  
+
+- **Listing 5.9 i 5.10 – polimorfizm?**  
+  - Tak, ponieważ metody `zmienIdeksyWgPolozenia()` są przeciążone (polimorfizm statyczny).  
+
+- **Listing 5.12, wiersz 49 – rzutowanie?**  
+  - `static_cast<Polozenie>(i);` konwertuje `int` na `Polozenie`, aby uniknąć niejawnych konwersji.  
+
+- **Listing 5.12, wiersze 52-53** → Wywołano `zmienIdeksyWgPolozenia(Polozenie, long&, long&)`, ponieważ argumenty to `long`.  
