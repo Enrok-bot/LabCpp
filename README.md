@@ -509,3 +509,105 @@ for(int i=-1; i<5; i+=3) k—;
   - `static_cast<Polozenie>(i);` konwertuje `int` na `Polozenie`, aby uniknąć niejawnych konwersji.  
 
 - **Listing 5.12, wiersze 52-53** → Wywołano `zmienIdeksyWgPolozenia(Polozenie, long&, long&)`, ponieważ argumenty to `long`.  
+
+# **01.04**
+
+### **Pytania kontrolne**
+
+**1. Czym jest dziedziczenie?**  
+Dziedziczenie w C++ pozwala jednej klasie (pochodnej) przejąć właściwości (składniki i metody) innej klasy (bazowej). Umożliwia to ponowne użycie kodu i wspiera polimorfizm.
+
+**2. Jakie składniki się nie dziedziczą, a jakie się dziedziczą?**  
+- **Dziedziczą się:**  
+  - publiczne i chronione (protected) metody i pola klasy bazowej.  
+- **Nie dziedziczą się:**  
+  - prywatne (private) składniki,  
+  - konstruktory,  
+  - destruktory,  
+  - przeciążenia operatorów klasy bazowej,  
+  - metody oznaczone jako `final`.
+
+**3. Jak sterować widocznością składników przy dziedziczeniu?**  
+Za pomocą specyfikatorów:
+```cpp
+class B : public A // składniki A zachowują swoją widoczność
+class B : protected A // public + protected stają się protected
+class B : private A // wszystko staje się private
+```
+
+**4. Jak utworzyć metodę wirtualną?**  
+Poprzez dodanie słowa kluczowego `virtual`:
+```cpp
+class Bazowa {
+public:
+    virtual void wypisz();
+};
+```
+Jeśli klasa ma mieć metodę czysto wirtualną (abstrakcyjną), to:
+```cpp
+virtual void wypisz() = 0;
+```
+
+
+**5. Na czym polega polimorfizm dynamiczny?**  
+Pozwala na wywoływanie metod odpowiednich dla faktycznego typu obiektu, nawet jeśli odwołujemy się do niego przez wskaźnik lub referencję do klasy bazowej. Działa tylko przy metodach `virtual`.
+
+---
+
+### **Dyskusja** 
+
+
+- **Listing 6.2, wiersz 4 → Skąd się wzięła metoda `doTekstu` w klasie `Kwadrat`?**  
+Pochodzi z klasy bazowej `Figura`. `Kwadrat` dziedziczy `doTekstu` jako metodę wirtualną i może ją przesłaniać (override).
+
+
+- **Listing 6.2, wiersz 6 → Dlaczego to nie zadziała?**  
+Ponieważ metoda `doTekstu` w klasie `Figura` może być czysto wirtualna (`=0`), a nie została zaimplementowana w `Kwadrat`, lub obiekt nie ma kontekstu dynamicznego (brak `virtual`).
+
+
+- **Listing 6.3, wiersze 5–6 → Jak działa konstruktor klasy `Kwadrat`?**  
+Wywołuje konstruktor klasy bazowej `Figura` z parametrem, następnie inicjalizuje własne pole `bok`.
+
+
+- **Listing 6.6, wiersz 12 → Po co jest znak `&`?**  
+To referencja — przekazujemy obiekt `Kwadrat` przez referencję, by uniknąć kopiowania i umożliwić polimorfizm.
+
+
+- **Listing 6.7, wiersz 12 → Czy można byłoby użyć tutaj pierwszej referencji?**  
+Tak, ale jeśli `const Figura&`, to tylko do metod `const`. W przeciwnym razie nie.
+
+
+- **Listing 6.8, wiersze 5 i 6 → Co oznacza `=0`?**  
+To metoda czysto wirtualna – klasa staje się abstrakcyjna i nie można jej instancjonować.
+
+
+- **Listing 6.10 → Czy zamiast referencji można użyć wskaźnika?**  
+Tak, referencję `Figura&` można zastąpić `Figura*`, ale trzeba jawnie dereferencjonować.
+
+
+- **Czy można utworzyć obiekt klasy `Mieszkaniec`?**  
+Nie, jeśli zawiera metody czysto wirtualne (`=0`). Wtedy jest klasą abstrakcyjną.
+
+
+- **Czy można utworzyć obiekt klasy `ZamiarMieszkanca`?**  
+Tak, jeśli nie zawiera metod czysto wirtualnych.
+
+
+- **Listing 6.11, wiersze 6 i 7 → Co oznaczają „= NIC” oraz „= NIGDZIE”?**  
+To inicjalizacja pól wartościami domyślnymi – zapewnia, że obiekt ma określony stan początkowy.
+
+
+- **Listing 6.12, wiersz 1 → Czy `class Sasiedztwo` można zastąpić `#include "sasiedztwo.h"`?**  
+Nie zawsze. `class Sasiedztwo;` to tzw. **forward declaration**. Używane, gdy wystarczy informacja o istnieniu klasy. `#include` jest potrzebny, jeśli korzystasz z jej definicji.
+
+- **Listing 6.12, wiersz 13 → Jak nazywa się ta metoda?**  
+To **konstruktor klasy**, nosi nazwę klasy `Sasiedztwo`.
+
+
+- **Listing 6.15, wiersz 15 → Co powoduje słowo `final`?**  
+Oznacza, że metoda nie może być dalej przesłaniana (override) w klasach pochodnych.
+
+- **Listing 6.12 → Które metody są abstrakcyjne?**  
+Wszystkie oznaczone `=0`, czyli np. `opis() = 0;` lub `dzialaj() = 0;` w klasach bazowych.
+
+
