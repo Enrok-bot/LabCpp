@@ -24,4 +24,8 @@ add_executable(LabCpp main.cpp
         ZLab06.cpp
         ZLab06.h
         Mieszkaniec.cpp
-        Mieszkaniec.h)
+        Mieszkaniec.h
+        osobniki.cpp
+        osobniki.h
+        Nisza.cpp
+        Nisza.h)
