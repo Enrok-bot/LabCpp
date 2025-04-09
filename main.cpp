@@ -1,36 +1,27 @@
 #include <iostream>
-#include "UrzadzenieElektryczne.h"
+#include "Nisza.h"
+#include "osobniki.h"
 
+static Nisza n1, n2, n3;
+static char sep = UstawieniaSymulacji::pobierzUstawienia().znakSeparator;
+
+void wyswietlNisze() {
+    std::cout << n1.jakiSymbol() << sep << n2.jakiSymbol() << sep << n3.jakiSymbol() << std::endl;
+}
 
 int main() {
-    UrzadzenieElektryczne u1("LG");
-    u1.wypisz();
-    std::cout << std::endl;
-    u1.wlacz();
-    u1.wypisz();
-    std::cout << (u1.jakiStan() ? "wlaczony" : "wylaczony") << std::endl;
-    std::cout << u1.jakaMarka() << std::endl;
+    std::cout << "Puste nisze: ";
+    wyswietlNisze();
 
-    TV tv1("Samsung", true);
-    tv1.wypisz();
-    std::cout << std::endl;
-    tv1.zmienKanal(50);
-    tv1.podglosnij();
-    tv1.scisz();
-    tv1.scisz();
-    tv1.wypisz();
-    std::cout << std::endl;
+    std::cout << "Lokowanie mieszkancow: ";
+    n1.przyjmijLokatora(new Glon());
+    n3.przyjmijLokatora(new Grzyb());
+    wyswietlNisze();
 
-    TV tv2("Philips");
-    tv2.wypisz();
-    std::cout << std::endl;
-    tv2.wlacz();
-    tv2.wypisz();
-    std::cout << std::endl;
+    std::cout << "Przesuwanie lokatorow: ";
+    n2 = n1;
+    wyswietlNisze();
 
-    UrzadzenieElektryczne *u2 = &tv2;
-    u2->wypisz();
-    u2->wylacz();
     std::cout << std::endl;
-    u2->wypisz();
+    return 0;
 }
