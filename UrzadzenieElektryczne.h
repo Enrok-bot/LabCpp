@@ -11,15 +11,15 @@ protected:
 public:
     UrzadzenieElektryczne(std::string marka, bool stan = false);
 
-    const void wlacz();
+    void wlacz();
 
-    const void wylacz();
+    void wylacz();
 
-    const std::string jakaMarka();
+    std::string jakaMarka() const ;
 
-    const bool jakiStan();
+    bool jakiStan() const ;
 
-    const void wypisz();
+    virtual void wypisz() const ;
 };
 
 class TV : public UrzadzenieElektryczne {
@@ -30,13 +30,13 @@ private:
 public:
     TV(std::string marka1, bool stan = false, int kanal1 = 1, int glosnosc1 = 0);
 
-    const void podglosnij();
+    void podglosnij();
 
-    const void scisz();
+    void scisz();
 
-    const void zmienKanal(int kanal1);
+    void zmienKanal(int kanal1);
 
-    const void wypisz();
+    void wypisz() const override;
 };
 
 #endif
