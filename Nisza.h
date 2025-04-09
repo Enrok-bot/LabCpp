@@ -30,11 +30,11 @@ public:
 
     char jakiSymbol() const;
 
-private:
     ZamiarMieszkanca aktywujLokatora(Sasiedztwo sasiedztwo) {
         return lokator->wybierzAkcje(sasiedztwo);
     }
 
+private:
     Mieszkaniec * wypuscPotomka() {
         return lokator->dajPotomka();
     }

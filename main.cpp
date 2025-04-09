@@ -1,26 +1,32 @@
 #include <iostream>
 #include "Nisza.h"
 #include "osobniki.h"
-
-static Nisza n1, n2, n3;
-static char sep = UstawieniaSymulacji::pobierzUstawienia().znakSeparator;
-
-void wyswietlNisze() {
-    std::cout << n1.jakiSymbol() << sep << n2.jakiSymbol() << sep << n3.jakiSymbol() << std::endl;
-}
+#include "sasiedztwo.h"
 
 int main() {
-    std::cout << "Puste nisze: ";
-    wyswietlNisze();
+    Nisza nisza;
+    nisza.przyjmijLokatora(new Bakteria());
 
-    std::cout << "Lokowanie mieszkancow: ";
-    n1.przyjmijLokatora(new Glon());
-    n3.przyjmijLokatora(new Grzyb());
-    wyswietlNisze();
+    std::cout << "Kto w niszy: "
+         << nisza.ktoTuMieszka() << std::endl;
+    std::cout << "Czy żywy: "
+         << nisza.lokatorZywy() << std::endl;
 
-    std::cout << "Przesuwanie lokatorow: ";
-    n2 = n1;
-    wyswietlNisze();
+    Sasiedztwo sasiedztwo;
+    sasiedztwo.okreslSasiada(P,GLON);
+    sasiedztwo.okreslSasiada(PG,GRZYB);
+    sasiedztwo.okreslSasiada(G,GRZYB);
+    sasiedztwo.okreslSasiada(LG,GLON);
+    sasiedztwo.okreslSasiada(L,BAKTERIA);
+    sasiedztwo.okreslSasiada(LD,BAKTERIA);
+    sasiedztwo.okreslSasiada(D,GLON);
+    sasiedztwo.okreslSasiada(PD,PUSTKA);
+
+    ZamiarMieszkanca zamiar =
+            nisza.aktywujLokatora(sasiedztwo);
+
+    std::cout << "Akcja: " << zamiar.akcja << " gdzie: "
+         << zamiar.gdzie << std::endl;
 
     std::cout << std::endl;
     return 0;
