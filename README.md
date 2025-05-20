@@ -610,4 +610,170 @@ Oznacza, że metoda nie może być dalej przesłaniana (override) w klasach poch
 - **Listing 6.12 → Które metody są abstrakcyjne?**  
 Wszystkie oznaczone `=0`, czyli np. `opis() = 0;` lub `dzialaj() = 0;` w klasach bazowych.
 
+# **Lab 9**
+
+**1. Na czym polega polimorfizm statyczny?**
+Polimorfizm statyczny (kompilacyjny) polega na wyborze wersji funkcji w czasie kompilacji, np. przez przeciążanie funkcji (ang. *function overloading*) lub szablony (ang. *templates*). Kompilator decyduje, którą wersję funkcji wywołać, na podstawie liczby i typów argumentów.
+
+---
+
+**2. Na czym polega polimorfizm dynamiczny?**
+Polimorfizm dynamiczny (czasowy, wykonania) polega na wywołaniu odpowiedniej wersji metody zależnie od rzeczywistego typu obiektu, a nie typu wskaźnika lub referencji. Wymaga użycia słowa kluczowego `virtual` w klasie bazowej i zazwyczaj działa przez tablicę wskaźników do funkcji wirtualnych (vtable).
+
+---
+
+**3. Czy w języku C++ jest możliwe połączenie polimorfizmu dynamicznego i statycznego? Jeśli tak, przygotuj prosty program demonstracyjny.**
+Tak, możliwe jest połączenie obu rodzajów polimorfizmu. Przykład:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void show() { cout << "Base\n"; }
+    void overload(int x) { cout << "Overloaded with int\n"; }
+    void overload(double x) { cout << "Overloaded with double\n"; }
+};
+
+class Derived : public Base {
+public:
+    void show() override { cout << "Derived\n"; }
+};
+
+int main() {
+    Base* ptr = new Derived();
+    ptr->show();         // Polimorfizm dynamiczny
+    ptr->overload(5);    // Polimorfizm statyczny (przeciążenie funkcji)
+    delete ptr;
+}
+```
+
+---
+
+**4. Czy mechanizm wartości domyślnych argumentów metod zalicza się do polimorfizmu?**
+Nie, wartości domyślne nie są formą polimorfizmu. Ułatwiają korzystanie z funkcji, ale nie zmieniają liczby implementacji funkcji. Kompilator podstawia domyślne wartości podczas kompilacji, ale nie wybiera między różnymi wersjami funkcji jak przy przeciążeniu.
+
+---
+
+**5. Czy polimorfizm statyczny się dziedziczy?**
+Polimorfizm statyczny sam w sobie nie jest dziedziczony, ponieważ związany jest z przeciążeniem funkcji, które jest rozstrzygane w czasie kompilacji. Można jednak przeciążać funkcje również w klasach pochodnych.
+
+---
+
+**6. Czy argumenty domyślne się dziedziczy?**
+Argumenty domyślne **nie są dziedziczone automatycznie**. Jeśli klasa pochodna nadpisuje metodę, to nie dziedziczy domyślnych wartości z klasy bazowej – trzeba je jawnie podać, jeśli są potrzebne.
+
+---
+
+**7. Co się dzieje, gdy istnieje już polimorfizm, ale usunie się słowo `virtual`?**
+Jeśli usunie się `virtual` w klasie bazowej, to wywołanie metody przez wskaźnik lub referencję do klasy bazowej nie spowoduje wywołania wersji z klasy pochodnej – wywołana zostanie metoda z klasy bazowej. To „wyłącza” polimorfizm dynamiczny.
+
+---
+
+**8. Po co są te „polimorfizmy”?**
+Polimorfizm zwiększa elastyczność i możliwość rozszerzania kodu. Pozwala pisać kod, który działa dla różnych typów danych lub różnych klas pochodnych, bez konieczności znajomości szczegółów implementacji. Ułatwia to m.in. programowanie obiektowe, projektowanie interfejsów i pisanie kodu ogólnego (np. z użyciem szablonów).
+
+---
+
+**9. W jaki sposób w języku C++ pobiera się i zwalnia pamięć?**
+W C++ dynamicznie przydzieloną pamięć rezerwuje się za pomocą `new`, a zwalnia się ją za pomocą `delete`. Przykład:
+
+```cpp
+int* ptr = new int; // przydzielenie pamięci
+*ptr = 10;
+delete ptr;         // zwolnienie pamięci
+```
+
+Dla tablic używa się `new[]` i `delete[]`:
+
+```cpp
+int* tab = new int[5];
+delete[] tab;
+```
+
+### **Dyskusja** 
+
+### Czy rozmiar zmiennej wskaźnikowej zależy od typu, na jaki ten wskaźnik pokazuje?
+
+**Nie.** Rozmiar wskaźnika jest niezależny od typu, na który pokazuje. Jest to rozmiar potrzebny do przechowywania adresu w pamięci, a nie danych. Na przykład: `sizeof(int*) == sizeof(double*)` na danej architekturze (zwykle 4 bajty na 32-bitowym i 8 bajtów na 64-bitowym systemie).
+
+---
+
+### Listing 9.2, wiersz 11 → Jaki byłby efekt, gdyby tego wiersza nie było?
+
+Wiersz `delete wskInt1D;` zwalnia wcześniej zaalokowaną pamięć. Jeśli ten wiersz zostanie usunięty, dojdzie do **wycieku pamięci** – zaalokowany obszar nie zostanie zwolniony.
+
+---
+
+### Listing 9.2, wiersze 5–7 → Po co jest znak `*`?
+
+Znak `*` służy do **dostępu do wartości**, na którą wskazuje wskaźnik.
+
+* `*wskInt1D = 5;` – przypisanie wartości do zmiennej, na którą wskazuje wskaźnik.
+* `*wskInt1D + 3` – dodanie wartości 3 do tej zmiennej.
+
+---
+
+### Co oznacza zapis: `int **wskInt2D = nullptr;`?
+
+Jest to wskaźnik do wskaźnika na `int`, używany np. przy dynamicznej alokacji tablicy dwuwymiarowej. Ustawienie na `nullptr` oznacza, że nie wskazuje on na żadną zaalokowaną pamięć.
+
+---
+
+### Listing 9.3, wiersz 4 → Ile pamięci zostanie zalokowane?
+
+`wskInt1D = new int[3];` – zaalokowane zostaną **3 elementy typu `int`**, czyli np. 12 bajtów (3 × 4 bajty).
+
+---
+
+### Listing 9.3, wiersze 7 i 11 → Co powoduje operator `+`?
+
+Operator `+` w kontekście wskaźnika powoduje **przesunięcie o odpowiednią liczbę elementów typu wskaźnikowego**. Np. `wskInt1D + 1` wskazuje na drugi element tablicy.
+
+---
+
+### Listing 9.3, wiersze 15 i 17 → Co powoduje operator `++`?
+
+Operator `++` przesuwa wskaźnik o **jeden element dalej w pamięci**. Działa analogicznie jak `wskInt1D + 1`, ale zmienia wartość wskaźnika (`iter`).
+
+---
+
+### Listing 9.5, wiersze 5, 6 → Dlaczego to nie zadziała?
+
+Te linie próbują przypisać referencji:
+
+* `int & refInt = new int;` – niepoprawne, bo `new int` zwraca wskaźnik, a nie zmienną.
+* `int & refInt = 4;` – niepoprawne, bo referencja nie może odnosić się bezpośrednio do literału (chyba że to `const &`).
+
+---
+
+### Listing 9.5, wiersz 14 → Co się tutaj dzieje?
+
+`refInt = b;` – to **przypisanie wartości `b` do zmiennej `a`**, ponieważ `refInt` jest referencją do `a`. To **nie jest przełączenie referencji na `b`**, co jest niemożliwe – referencje nie mogą zmieniać obiektu, na który wskazują.
+
+---
+
+### Listing 9.5, wiersze 14 i 24 → Jaka jest różnica?
+
+* `refInt = b;` – przypisuje wartość `b` do `a`.
+* `wskInt = &B;` – **zmienia wskaźnik**, by wskazywał teraz na `B`. Wskaźniki mogą być przekierowywane, referencje nie.
+
+---
+
+### Czy rozmiar referencji zależy od typu, na jaki ta referencja pokazuje? Czy takie pytanie ma sens?
+
+Rozmiar referencji **jest taki sam jak rozmiar odpowiadającego wskaźnika** – zatem w praktyce jest **niezależny od typu**. Pytanie ma sens teoretyczny, ale w implementacjach referencje często są traktowane jak wskaźniki, więc ich rozmiar jest stały.
+
+---
+
+### Dlaczego lokowanie pamięci odbywa się dwuetapowo?
+
+W przypadku np. tablicy 2D `int**`, alokujemy najpierw tablicę wskaźników (`new int*[w]`), a potem każdą „linię” (`new int[k]`). Dzięki temu można tworzyć nieregularne struktury (macierze o różnych długościach wierszy).
+
+---
+
+### Dlaczego zwalnianie pamięci odbywa się dwuetapowo?
+
+Bo każda „linia” była alokowana osobno – trzeba więc osobno ją usunąć (`delete[] wskInt2D[i]`), a na końcu wskaźnik główny (`delete[] wskInt2D`).
 
