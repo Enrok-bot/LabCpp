@@ -28,4 +28,7 @@ add_executable(LabCpp main.cpp
         osobniki.cpp
         osobniki.h
         Nisza.cpp
-        Nisza.h)
+        Nisza.h
+        zlab10.cpp
+        zlab10.h
+)

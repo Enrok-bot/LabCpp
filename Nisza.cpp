@@ -1,7 +1,4 @@
 #include "Nisza.h"
-
-#include <bits/locale_facets_nonio.h>
-
 #include "osobniki.h"
 
 Nisza::Nisza() : lokator(nullptr) {
