@@ -8,7 +8,7 @@ public:
 
     void wektor_sortowanie();
 
-    void zbior();
+    void zbior(); //10.3 to do
 };
 
 

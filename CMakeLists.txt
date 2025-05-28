@@ -31,4 +31,6 @@ add_executable(LabCpp main.cpp
         Nisza.h
         zlab10.cpp
         zlab10.h
+        srodowisko.cpp
+        srodowisko.h
 )

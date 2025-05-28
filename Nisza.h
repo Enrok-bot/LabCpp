@@ -2,6 +2,7 @@
 #define NISZA_H
 #include "Mieszkaniec.h"
 #include "sasiedztwo.h"
+#include "srodowisko.h"
 
 class Nisza {
 private:
@@ -30,11 +31,13 @@ public:
 
     char jakiSymbol() const;
 
+private:
+    friend void Srodowisko::wykonajAkcje(unsigned int wiersz, unsigned int kolumna);
+
     ZamiarMieszkanca aktywujLokatora(Sasiedztwo sasiedztwo) {
         return lokator->wybierzAkcje(sasiedztwo);
     }
 
-private:
     Mieszkaniec * wypuscPotomka() {
         return lokator->dajPotomka();
     }
@@ -42,8 +45,6 @@ private:
         lokator->przyjmijZdobycz(ofiara);
     }
 };
-
-
 #endif //NISZA_H
 
 /*
