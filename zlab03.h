@@ -1,60 +1,63 @@
-#ifndef ZLAB03_H
-#define ZLAB03_H
-#include <string>
+#ifndef LABCPP_ZLAB03_H
+#define LABCPP_ZLAB03_H
 
-using namespace std;
+#include <string>
+#include <iostream>
 
 class Prostokat {
-protected:
-    string nazwa;
+private:
+    std::string nazwa;
     double bok1, bok2;
     bool poprawny;
     double obwod, pole;
 
     bool czyPoprawny(double bok1, double bok2);
-
     void obliczObwod();
-
     void obliczPole();
 
 public:
-    Prostokat(string n = "?", double a = 1, double b = 2);
-
+    Prostokat(std::string n = "?", double a = 1, double b = 2);
     ~Prostokat();
 
-    bool czyPoprawny();
-
-    const string &jakaNazwa();
-
-    double podajPole();
-
-    double podajObwod();
-
+    bool czyPoprawny() const;
+    const std::string& jakaNazwa() const;
+    double podajPole() const;
+    double podajObwod() const;
     bool zmienBoki(double a, double b);
+    std::string do_tekstu() const;
 
-    virtual string doTekstu();
+    Prostokat & operator++(int);   // postfix
+    Prostokat & operator++();       // prefix
+    bool operator!() const { return !czyPoprawny(); }
+    bool operator<(const Prostokat &p) const;
 };
 
-#endif
+std::istream &operator>>(std::istream &strumien, Prostokat &prostokat);
+std::ostream &operator<<(std::ostream &strumien, const Prostokat &prostokat);
 
+class Kwadrat {
+private:
+    std::string nazwa;
+    double bok;
+    bool poprawny;
+    double obwod, pole;
 
-// cout << "Laboratorium 03" << endl;
-//
-// Prostokat p1;
-// Prostokat p2("koc", 1.4, 2.2);
-// Prostokat p3("pułapka", -2, -3);
-//
-// cout.precision(2);
-// cout << p1.doTekstu() << endl;
-// cout << p2.doTekstu() << endl;
-// cout << p3.doTekstu() << endl;
-//
-// p3.zmienBoki(2, 3);
-// cout << endl << p3.doTekstu() << endl;
-//
-// cout << endl << "Użycie metod obiektu:" << endl;
-// cout << "Nazwa: " << p2.jakaNazwa() << endl
-//         << "Poprawny: " << p2.czyPoprawny() << endl
-//         << "Obwód=" << p2.podajObwod() << endl
-//         << "Pole=" << p2.podajPole() << endl;
-// return 0;
+    bool czy_poprawny(double bok);
+    void oblicz_obwod();
+    void oblicz_pole();
+
+public:
+    Kwadrat(std::string n = "?", double a = 1);
+    ~Kwadrat();
+
+    bool czy_poprawny() const;
+    const std::string& jaka_nazwa() const;
+    double podaj_pole() const;
+    double podaj_obwod() const;
+    bool zmien_boki(double a);
+    std::string do_tekstu() const;
+
+    friend std::ostream& operator<<(std::ostream& os, const Kwadrat& k);
+};
+
+#endif // LABCPP_ZLAB03_H

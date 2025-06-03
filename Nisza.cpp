@@ -1,41 +1,42 @@
-#include "Nisza.h"
-#include "osobniki.h"
+#include "nisza.h"
 
 Nisza::Nisza() : lokator(nullptr) {
 }
 
-Nisza::Nisza(Nisza &innaNsza) {
-    if (innaNsza.zajeta()) {
-        lokator = innaNsza.lokator;
-        innaNsza.lokator = nullptr;
-    } else lokator = nullptr;
+Nisza::Nisza(Nisza& innaNisza) {
+    if (innaNisza.zajeta()) {
+        lokator = innaNisza.lokator;
+        innaNisza.lokator = nullptr;
+    }
+    else { lokator = nullptr; }
 }
 
 Nisza::~Nisza() {
     if (lokator != nullptr) delete lokator;
 }
 
-Nisza &Nisza::operator=(Nisza &innaNsza) {
-    Mieszkaniec *tmp = lokator;
-    lokator = innaNsza.lokator;
-    innaNsza.lokator = tmp;
+Nisza& Nisza::operator=(Nisza& innaNisza) {
+    Mieszkaniec* tmp = lokator;
+    lokator = innaNisza.lokator;
+    innaNisza.lokator = tmp;
     return *this;
 }
 
-void Nisza::przyjmijLokatora(Mieszkaniec *lokatorBezdomny) {
+void Nisza::przyjmijLokatora(Mieszkaniec* lokatorBezdomny) {
     if (!zajeta()) {
         lokator = lokatorBezdomny;
         lokatorBezdomny = nullptr;
     }
 }
 
-Mieszkaniec *Nisza::oddajLokatora() {
-    Mieszkaniec *tmp = lokator;
+Mieszkaniec* Nisza::oddajLokatora() {
+    Mieszkaniec* tmp = nullptr;
 
     if (zajeta()) {
         tmp = lokator;
         lokator = nullptr;
     }
+
     return tmp;
 }
 
@@ -44,10 +45,16 @@ bool Nisza::lokatorZywy() const {
         RodzajMieszkanca r = lokator->kimJestes();
         return r == GLON || r == GRZYB || r == BAKTERIA;
     }
-    return false;
+    else return false;
 }
 
 char Nisza::jakiSymbol() const {
-    if (!zajeta()) return UstawieniaSymulacji::pobierzUstawienia().znakPustaNisza;
-    return lokator->jakiSymbol();
+    if (!zajeta())
+        return UstawieniaSymulacji::
+            pobierzUstawienia().znakPustaNisza;
+    else return lokator->jakiSymbol();
 }
+
+
+
+

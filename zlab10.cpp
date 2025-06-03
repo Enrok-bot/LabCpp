@@ -1,80 +1,132 @@
 #include "zlab10.h"
-#include "GeneratorLosowy.h"
-#include <iostream>
+#include "generatorlosowy.h"
 #include <vector>
-#include <algorithm>
+#include <iostream>
+#include <chrono>
 #include <set>
+#include <map>
+
+using namespace std;
 
 void ZLab10::wektor() {
-    std::vector<double> wektor;
+    vector<double> wektor;
 
-    wektor.push_back(2.3);
-    wektor.push_back(4.5);
-    wektor.push_back(-2.3);
-    wektor.push_back(0.1);
+    wektor.push_back(0);
+    wektor.push_back(1);
+    wektor.push_back(2);
+    wektor.push_back(3);
 
-    std::cout << "Rozmiar wektora: " << wektor.size() << std::endl;
-    for (double d: wektor) std::cout << d << " ";
-    std::cout << std::endl << std::endl;
+    cout << "Rozmiar wektora: " << wektor.size() << endl;
+    for (double d : wektor) cout << d << " ";
+    cout << endl << endl;
 
-    // for (unsigned long i = 5; i < 10; i++) wektor[i] = 3.2;
-    // std::cout << "Rozmiar wektora: " << wektor.size() << std::endl;
-    // for (double d: wektor) std::cout << d << " ";
-    // std::cout << std::endl << std::endl;
+    //Próba zapisu poza granicą
+    for (unsigned long i = 5; i < 10; i++) wektor[i] = 3;
+    cout << "Rozmiar wektora: " << wektor.size() << endl;
+    for (double d : wektor) cout << d << " ";
+    cout << endl << endl;
 
+    //Zwiększenie rozmiaru
     wektor.resize(12);
-    for (unsigned long i = 5; i < 10; i++) wektor[i] = 3.2;
-    std::cout << "Rozmiar wektora: " << wektor.size() << std::endl;
-    for (double d: wektor) std::cout << d << " ";
-    std::cout << std::endl << std::endl;
+    for (unsigned long i = 5; i < 10; i++) wektor[i] = 3;
+    cout << "Rozmiar wektora: " << wektor.size() << endl;
+    for (double d : wektor) cout << d << " ";
+    cout << endl << endl;
 
-    for (unsigned long i = 0; i < wektor.size(); i++) wektor[i] = i;
-    std::cout << "Rozmiar wektora: " << wektor.size() << std::endl;
-    for (double d: wektor) std::cout << d << " ";
-    std::cout << std::endl << std::endl;
+    //Zapis przy użyciu zwykłej pętli
+    for (unsigned long i = 0; i < wektor.size(); i++)
+        wektor[i] = i;
 
-    for (double & d: wektor) d = 3.14;
+    cout << "Rozmiar wektora: " << wektor.size() << endl;
+    for (double d : wektor) cout << d << " ";
+    cout << endl << endl;
 
-    for (double d: wektor) std::cout << d << " ";
-    std::cout << std::endl << std::endl;
+    //Zapis przy użyciu pętli zakresowej
+    for (double& d : wektor) d = 3.14;
 
+    for (double d : wektor) cout << d << " ";
+    cout << endl << endl;
+
+    //Czyszczenie
     wektor.clear();
-    std::cout << "Rozmiar wektora: " << wektor.size() << std::endl;
-    for (double d: wektor) std::cout << d << " ";
-    std::cout << std::endl << std::endl;
+    cout << "Rozmiar wektora: " << wektor.size() << endl;
+    for (double d : wektor) cout << d << " ";
+    cout << endl << endl;
 }
 
-void ZLab10::wektor_sortowanie()
-{
-    std::vector<int> wektor;
+void ZLab10::wektor_sortowanie() {
+    vector<int> wektor;
 
-    wektor.resize(13);
+    wektor.resize(10);
 
-    for(int & j: wektor) j = GEN::losujOdZera(20);
+    for (int& j : wektor) j = GEN::losujOdZeraDo(20);
 
-    std::cout << "Wektor wygenerowany" << std::endl;
-    for(auto j: wektor) std::cout << j << " ";
-    std::cout << std::endl << std::endl;
+    cout << "Wektor wygenerowany" << endl;
+    for (auto j : wektor) cout << j << " ";
+    cout << endl << endl;
 
-    std::cout << "Wektor posortowany" << std::endl;
+
+    cout << "Wektor posortowany" << endl;
     sort(wektor.begin(), wektor.end());
-    for(auto j : wektor) std::cout << j << " ";
-    std::cout << std::endl << std::endl;
+    for (auto j : wektor) cout << j << " ";
+    cout << endl << endl;
 
-    std::cout << "Wektor pomieszany" << std::endl;
-    random_shuffle(wektor.begin(), wektor.end(), GEN::losujOdZera);
-    for(auto j : wektor) std::cout << j << " ";
-    std::cout << std::endl << std::endl;
+    cout << "Wektor pomieszany" << endl;
+    unsigned seed = chrono::system_clock::now().
+                    time_since_epoch().count();
+
+    default_random_engine e(seed);
+    shuffle(wektor.begin(), wektor.end(), e);
+    for (auto j : wektor) cout << j << " ";
+    cout << endl << endl;
 }
 
 void ZLab10::zbior() {
-    std::set<std::string> imiona;
+    set<string> imiona;
     imiona.insert("Adam");
     imiona.insert("Ewa");
     imiona.insert("Maciek");
 
-    for (std::string s: imiona) std::cout << s << " ";
-    std::cout << std::endl << std::endl;
+    for (string s : imiona) cout << s << " ";
+    cout << endl << endl;
 
+    imiona.insert("Adam");
+    imiona.insert("Iwona");
+    imiona.insert("Ewa");
+    imiona.insert("Beata");
+    imiona.insert("Maciek");
 
+    for (string s : imiona) cout << s << " ";
+    cout << endl << endl;
+
+    set<string>::iterator iter = imiona.begin();
+
+    while (iter != imiona.end()) {
+        cout << *iter << endl;
+        iter++;
+    }
+}
+
+void ZLab10::mapa() {
+    map<char, double> pomiary;
+
+    pomiary.insert(pair<char, double>('A', 20));
+    pomiary.insert(pair<char, double>('B', 30));
+    pomiary.insert(pair<char, double>('C', 50));
+    pomiary.insert(pair<char, double>('D', 25));
+    pomiary.insert(pair<char, double>('A', 20));
+    pomiary.insert(pair<char, double>('A', 40));
+
+    cout << "Wyświetlenie mapy" << endl;
+    for (char c : {'A', 'B', 'C'})
+
+    cout << c << "->" << pomiary[c] << endl;
+
+    cout << "Policz A -> " << pomiary.count('A') << endl;
+
+    pomiary.erase('A');
+    cout << "Wyświetlenie mapy" << endl;
+    for (char c : {'A', 'B', 'C'})
+        cout << c << "->" << pomiary[c] << endl;
+    cout << "Policz A -> " << pomiary.count('A') << endl;
 }

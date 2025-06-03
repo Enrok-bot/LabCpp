@@ -1,15 +1,23 @@
-#ifndef GENERATORLOSOWY_H
-#define GENERATORLOSOWY_H
-#include <random>
+#ifndef WIRTUALNYEKOSYSTEM_GENERATORLOSOWY_H
+#define WIRTUALNYEKOSYSTEM_GENERATORLOSOWY_H
 
-class Index2D {
+#include <random>
+#include <vector>
+#include <algorithm>
+#include <chrono>
+
+using namespace std;
+
+class Indeks2D {
 public:
     unsigned int wiersz, kolumna;
 
-    Index2D(unsigned int _w = 0, unsigned int _k = 0) : wiersz(_w), kolumna(_k) {}
+    Indeks2D(unsigned int _w = 0, unsigned int _k = 0)
+        : wiersz(_w), kolumna(_k) {
+    }
 };
 
-typedef std::vector<Index2D> WektorIndeksow2D;
+typedef vector<Indeks2D> WektorIndeksow2D;
 
 class GeneratorLosowy {
 private:
@@ -19,15 +27,17 @@ private:
     }
 
 public:
-    static unsigned short losujPomiedzy(unsigned short min, unsigned short max);
+    static unsigned short losujPomiedzy
+    (unsigned short min, unsigned short max);
 
     static long losujPomiedzy(long min, long max);
 
-    static int losujOdZera(int max);
+    static int losujOdZeraDo(int max);
 
-    static WektorIndeksow2D  indeksyLosowe(unsigned int wiersze, unsigned int kolumny);
+    static WektorIndeksow2D indeksyLosowe(unsigned int wiersze, unsigned int
+kolumny);
 };
 
 typedef GeneratorLosowy GEN;
 
-#endif //GENERATORLOSOWY_H
+#endif

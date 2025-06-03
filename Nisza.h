@@ -1,77 +1,52 @@
 #ifndef NISZA_H
 #define NISZA_H
-#include "Mieszkaniec.h"
+
 #include "sasiedztwo.h"
+#include "mieszkaniec.h"
 #include "srodowisko.h"
 
 class Nisza {
 private:
-    Mieszkaniec *lokator;
+    Mieszkaniec* lokator;
 
 public:
     Nisza();
-
-    Nisza(Nisza &innaNsza);
-
+    Nisza(Nisza& innaNisza);
     ~Nisza();
 
-    Nisza &operator=(Nisza &innaNsza);
+    Nisza& operator=(Nisza& innaNisza);
 
-    void przyjmijLokatora(Mieszkaniec *lokatorBezdomny);
+    void przyjmijLokatora(Mieszkaniec* lokatorBezdomny);
 
-    Mieszkaniec *oddajLokatora();
+    Mieszkaniec* oddajLokatora();
 
     bool zajeta() const { return lokator != nullptr; }
 
     RodzajMieszkanca ktoTuMieszka() {
-        return zajeta() ? lokator->kimJestes(): PUSTKA;
+        return zajeta() ? lokator->kimJestes() : PUSTKA;
     }
 
     bool lokatorZywy() const;
 
     char jakiSymbol() const;
 
-private:
-    friend void Srodowisko::wykonajAkcje(unsigned int wiersz, unsigned int kolumna);
-
-    ZamiarMieszkanca aktywujLokatora(Sasiedztwo sasiedztwo) {
+    ZamiarMieszkanca aktywujLokatora(
+        Sasiedztwo sasiedztwo) {
         return lokator->wybierzAkcje(sasiedztwo);
     }
 
-    Mieszkaniec * wypuscPotomka() {
+private:
+    friend void Srodowisko::wykonajAkcje(unsigned int wiersz,
+                                         unsigned int kolumna);
+
+    Mieszkaniec* wypuscPotomka() {
         return lokator->dajPotomka();
     }
-    void przyjmijZdobycz(Mieszkaniec *ofiara) {
+
+    void przyjmijZdobycz(Mieszkaniec* ofiara) {
         lokator->przyjmijZdobycz(ofiara);
     }
 };
-#endif //NISZA_H
 
-/*
-*    Nisza nisza;
-nisza.przyjmijLokatora(new Bakteria());
 
-std::cout << "Kto w niszy: "
-<< nisza.ktoTuMieszka() << std::endl;
-std::cout << "Czy żywy: "
-<< nisza.lokatorZywy() << std::endl;
-
-Sasiedztwo sasiedztwo;
-sasiedztwo.okreslSasiada(P,GLON);
-sasiedztwo.okreslSasiada(PG,GRZYB);
-sasiedztwo.okreslSasiada(G,GRZYB);
-sasiedztwo.okreslSasiada(LG,GLON);
-sasiedztwo.okreslSasiada(L,BAKTERIA);
-sasiedztwo.okreslSasiada(LD,BAKTERIA);
-sasiedztwo.okreslSasiada(D,GLON);
-sasiedztwo.okreslSasiada(PD,PUSTKA);
-
-ZamiarMieszkanca zamiar =
-nisza.aktywujLokatora(sasiedztwo);
-
-std::cout << "Akcja: " << zamiar.akcja << " gdzie: "
-<< zamiar.gdzie << std::endl;
-
-std::cout << std::endl;
-return 0;
-*/
+#endif

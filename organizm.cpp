@@ -12,14 +12,14 @@ bool Organizm::posilek() {
     if (glodny()) {
         licznikPosilkow++;
         return true;
-    }return false;
+    } else return false;
 }
 
 bool Organizm::potomek() {
     if (paczkujacy()) {
         licznikPosilkow -= kosztPotomka;
         return true;
-    }return false;
+    } else return false;
 }
 
 void Organizm::krokSymulacji() {

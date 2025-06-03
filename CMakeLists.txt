@@ -1,36 +1,32 @@
-cmake_minimum_required(VERSION 3.30)
-project(LabCpp)
+cmake_minimum_required(VERSION 3.29.6)
+project(WirtualnyEkosystem)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 
-add_executable(LabCpp main.cpp
-        zlab02.cpp
-        zlab02.h
-        zlab03.cpp
-        zlab03.h
+add_executable(WirtualnyEkosystem main.cpp
         organizm.cpp
         organizm.h
-        samochod.cpp
-        samochod.h
+        main.cpp
         ustawienia.h
-        zapaswody.cpp
-        zapaswody.h
+        ustawienia.h
+        organizm.cpp
+        organizm.h
+        generatorlosowy.cpp
+        generatorlosowy.h
         sasiedztwo.cpp
         sasiedztwo.h
-        GeneratorLosowy.cpp
-        GeneratorLosowy.h
-        UrzadzenieElektryczne.cpp
-        UrzadzenieElektryczne.h
-        ZLab06.cpp
-        ZLab06.h
-        Mieszkaniec.cpp
-        Mieszkaniec.h
+        mieszkaniec.cpp
+        mieszkaniec.h
         osobniki.cpp
         osobniki.h
-        Nisza.cpp
-        Nisza.h
+        nisza.cpp
+        nisza.h
         zlab10.cpp
         zlab10.h
+        zlab03.h
+        zlab03.cpp
+        zlab12.h
+        zlab12.cpp
         srodowisko.cpp
         srodowisko.h
-)
+                )

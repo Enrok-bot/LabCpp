@@ -1,4 +1,4 @@
-#include "Mieszkaniec.h"
+#include "mieszkaniec.h"
 
 Mieszkaniec::Mieszkaniec(char _symbol) {
     symbol = _symbol;
@@ -13,4 +13,5 @@ char Mieszkaniec::jakiSymbol() const {
 }
 
 Mieszkaniec::~Mieszkaniec() {
+
 }
