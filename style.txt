@@ -1,0 +1,68 @@
+/* Reset */
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+/* BODY */
+body {
+    background: #4ae;
+    color: #000040;
+}
+
+/* BANER + STOPKA */
+h2, #stopka {
+    background: #000040;
+    color: #8080ff;
+    text-align: center;
+}
+
+/* KONTENER */
+#kontener {
+    background: #ffffff;
+    width: 90%;
+    margin: auto;
+}
+
+/* MENU */
+#menu {
+    float: left;
+    width: 20%;
+    padding: 2%;
+    background: #ffffff;
+}
+
+/* MENU LISTA */
+#menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+#menu li {
+    margin-bottom: 10px;
+}
+
+#menu a {
+    text-decoration: none;
+    color: #0000a0;
+}
+
+/* TREŚĆ */
+#tresc {
+    float: right;
+    width: 70%;
+    padding: 2%;
+    background: #80ffff;
+}
+
+/* STOPKA */
+#stopka {
+    clear: both;
+    width: 100%;
+    padding: 10px;
+}
+
+/* TABELA */
+.parzysty {
+    background: #ffffff;
+}
