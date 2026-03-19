@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Tabele</title>
+<link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+
+<div id="kontener">
+
+<div id="baner"><h2>Szybki kurs HTML</h2></div>
+
+<div id="menu">
+<ul>
+<li><a href="index.html">Podstawowe znaczniki</a></li>
+<li><a href="tabele.html">Tworzenie tabel</a></li>
+<li><a href="formularze.html">Budowa formularzy</a></li>
+</ul>
+</div>
+
+<div id="tresc">
+
+<p><b>Przykładowa tabela:</b></p>
+
+<table border="1">
+<caption>Wyniki sesji</caption>
+
+<thead>
+<tr>
+<th>Przedmiot</th>
+<th>Ocena</th>
+</tr>
+</thead>
+
+<tbody>
+<tr><td>Matematyka</td><td>4.0</td></tr>
+<tr class="parzysty"><td>Informatyka</td><td>5.0</td></tr>
+</tbody>
+
+<tfoot>
+<tr>
+<td>Średnia</td>
+<td>4.5</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+
+<div id="stopka">&copy;BP</div>
+
+</div>
+
+</body>
+</html>
