@@ -1,0 +1,57 @@
+/* ============================= */
+/* RESPONSYWNOŚĆ - MEDIA QUERY  */
+/* ============================= */
+
+/* TABLET */
+@media screen and (max-width: 900px) {
+
+  #menu {
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  #menu li {
+    float: none;
+    display: inline-block;
+  }
+
+  #tresc {
+    float: none;
+    width: 100%;
+  }
+
+  #pasek {
+    float: none;
+    width: 100%;
+  }
+
+}
+
+/* TELEFON */
+@media screen and (max-width: 600px) {
+
+  #menu li {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  #menu a {
+    width: 100%;
+  }
+
+  #tresc {
+    padding: 5px;
+  }
+
+  #kontener {
+    width: 100%;
+    margin: 0;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+}
